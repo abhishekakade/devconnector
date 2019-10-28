@@ -7,19 +7,19 @@ const db = config.get("mongoURI");
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
-      // you get deprecationWarning if not used this
-      useNewUrlParser: true
+      // you get deprecationWarning in mongo if these are not used
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true
     });
 
     console.log("MongoDB Connected...");
-
   } catch (err) {
     console.error(err.message);
 
     // Exit process with failure
     process.exit(1);
-
   }
-}
+};
 
 module.exports = connectDB;
